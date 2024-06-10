@@ -14,7 +14,7 @@ public class UserResource {
     @Tag(name = "get", description = "Retorna uma lista de usuários")
     @GetMapping
     public ResponseEntity<User> findAll() {
-        User u = new User(1, " alguem", "aleguem @", "1231313", "1321321");
+        User u = new User(1L, " alguem", "aleguem @", "1231313", "1321321");
         return ResponseEntity.ok().body(u);
     }
 }
