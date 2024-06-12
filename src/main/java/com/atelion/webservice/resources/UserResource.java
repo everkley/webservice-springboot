@@ -31,7 +31,7 @@ public class UserResource {
 
     @Operation(summary = "get usuário por id", description = "retorna um usuário com base no id informado")
     @GetMapping(value ="/{id}")
-    public ResponseEntity<User> findById(@PathVariable(value = "id", required = true)
+    public ResponseEntity<User> findById(@PathVariable(value = "id")
                                              @Parameter(name = "id", description = "Id do usuário",
                                                      example = "1") Long id){
         User user = userService.findById(id);
