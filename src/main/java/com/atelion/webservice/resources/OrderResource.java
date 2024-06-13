@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value ="/order")
+@RequestMapping(value ="/orders")
 @Tag(name = "get")
 public class OrderResource {
 
