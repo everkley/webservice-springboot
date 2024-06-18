@@ -64,7 +64,7 @@ public class Order implements Serializable {
     }
 
     public void setOrderStatus(OrderStatus orderStatus) {
-        if (orderStatus != null){
+        if (orderStatus != null) {
             this.orderStatus = orderStatus.getCode();
         }
 
@@ -78,7 +78,7 @@ public class Order implements Serializable {
         this.client = client;
     }
 
-    public Set<OrderItem> getItems(){
+    public Set<OrderItem> getItems() {
         return items;
     }
 
@@ -88,6 +88,14 @@ public class Order implements Serializable {
 
     public void setPayment(Payment payment) {
         this.payment = payment;
+    }
+
+    public Double getTotal() {
+        Double total = 0.0;
+        for (OrderItem oi : items){
+            total += oi.getSubTotal();
+        }
+        return total;
     }
 
     @Override
