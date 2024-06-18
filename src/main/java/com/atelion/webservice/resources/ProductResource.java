@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/products")
-@Tag(name = "get")
+@Tag(name = "Products", description = "Operações relacionadas aos Products")
 public class ProductResource {
 
     @Autowired

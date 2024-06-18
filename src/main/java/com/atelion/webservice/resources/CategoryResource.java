@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/categories")
-@Tag(name = "get")
+@Tag(name = "Categories", description = "Operações relacionadas aos Categories")
 public class CategoryResource {
     @Autowired
     private CategoryService categoryService;

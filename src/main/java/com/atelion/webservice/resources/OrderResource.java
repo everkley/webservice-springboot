@@ -16,20 +16,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value ="/orders")
-@Tag(name = "get")
+@Tag(name = "Orders", description = "Operações relacionadas aos Orders")
 public class OrderResource {
 
     @Autowired
     private OrderService orderService;
 
-    @Operation(summary = "get lista de orders", description = "retorna uma lista com todas as orders")
+    @Operation(summary = "get lista de Orders", description = "retorna uma lista com todas as Orders")
     @GetMapping
     public ResponseEntity<List<Order>> findAll(){
         List<Order> orders = orderService.findAll();
         return ResponseEntity.ok().body(orders);
     }
 
-    @Operation(summary = "get order", description = "retorna uma order com base no id informado")
+    @Operation(summary = "get Order", description = "retorna uma Order com base no id informado")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Order> findById(@PathVariable(value = "id")
                                               @Parameter(name = "id", description = "id da order" ,

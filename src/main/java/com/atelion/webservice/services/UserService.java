@@ -18,9 +18,13 @@ public class UserService {
         return repository.findAll();
     }
 
-    public User findById(Long id){
+    public User findById(Long id) {
         Optional<User> user = repository.findById(id);
         return user.get();
+    }
+
+    public User insert(User user) {
+        return repository.save(user);
     }
 
 }
