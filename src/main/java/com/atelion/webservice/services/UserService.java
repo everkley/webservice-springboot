@@ -2,7 +2,11 @@ package com.atelion.webservice.services;
 
 import com.atelion.webservice.entities.User;
 import com.atelion.webservice.repositories.UserRepository;
+import com.atelion.webservice.services.exceptions.DataBaseException;
+import com.atelion.webservice.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +24,7 @@ public class UserService {
 
     public User findById(Long id) {
         Optional<User> user = repository.findById(id);
-        return user.get();
+        return user.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public User insert(User user) {
@@ -28,7 +32,14 @@ public class UserService {
     }
 
     public void delete(Long id) {
-        repository.deleteById(id);
+        try {
+            if (!repository.existsById(id)) {
+                throw new ResourceNotFoundException(id);
+            }
+            repository.deleteById(id);
+        } catch (DataIntegrityViolationException e){
+            throw new DataBaseException(e.getMessage());
+        }
     }
 
     public User update(Long id, User user){
